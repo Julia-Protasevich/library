@@ -1,0 +1,11 @@
+.book-item{
+    width: 500px;
+}
+
+.book-item-span button{
+    float: right;
+}
+
+.taken{
+    text-decoration: line-through;
+}
