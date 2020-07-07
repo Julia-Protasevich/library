@@ -4,14 +4,17 @@ const webpack = require('webpack');
 
 module.exports = (env = {}) => {
 
-  const {mode = 'development'} = env;
+  const DEV = 'development';
+  const PROD = 'production';
 
-  const isProd = mode === 'production';
-  const isDev = mode === 'development';
+  const {mode = DEV} = env;
+
+  const isProd = mode === PROD;
+  const isDev = mode === DEV;
 
   const getStyleLoaders = () => {
     return [
-      isProd? MiniCssExtractPlugin.loader : 'style-loader',
+      isProd ? MiniCssExtractPlugin.loader : 'style-loader',
       'css-loader'
     ];
   };
@@ -41,7 +44,7 @@ module.exports = (env = {}) => {
   };
 
   return {
-    mode: isProd ? 'production' : isDev && 'development',
+    mode: isProd ? PROD : isDev && DEV,
     module: {
       rules: [{
           test: /\.(js|jsx)$/,
