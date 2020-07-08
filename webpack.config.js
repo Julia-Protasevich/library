@@ -6,11 +6,27 @@ module.exports = (env = {}) => {
 
   const DEV = 'development';
   const PROD = 'production';
+  const NONE = 'none';
 
-  const {mode = DEV} = env;
+  let {mode = DEV} = env;
 
-  const isProd = mode === PROD;
-  const isDev = mode === DEV;
+  let isProd = false;
+  let isDev = false;
+
+  const defineMode = () => {
+    switch (mode){
+      case PROD:
+        isProd = true;
+        break;
+      case DEV:
+        isDev = true;
+        break;
+      default:
+        mode = NONE;
+    }
+
+    return mode;
+  };
 
   const getStyleLoaders = () => {
     return [
@@ -44,7 +60,7 @@ module.exports = (env = {}) => {
   };
 
   return {
-    mode: isProd ? PROD : isDev && DEV,
+    mode: defineMode(),
     module: {
       rules: [{
           test: /\.(js|jsx)$/,
