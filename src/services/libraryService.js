@@ -25,4 +25,22 @@ export default class LibraryService {
     getAllBooks = () => {
         return this.instance.get('books')
     };
+
+    deleteBook = (bookId) => {
+      return this.instance.delete(`books/${bookId}`)
+    };
+
+    bookBook = (bookId, userId) => {
+      return this.instance.put(`books/${bookId}`, {'userId': userId});
+    };
+
+    getUsersBooks = (userId) => {
+      return this.instance.get(`books/userid/${userId}`);
+    };
+
+    releaseBook = (bookId) => {
+      return this.instance.put(`books/${bookId}`);
+    };
+
+    isAdmin = false;//hardcode before role check is implemented
 }

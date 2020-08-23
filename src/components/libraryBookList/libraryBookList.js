@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import LibraryBookItem from './libraryBookItem';
+import LibraryBookItem from '../libraryBookItem';
 import {withLibraryService} from '../highOrderComponents';
 import {bookBook, removeBook, loadLibraryBooks} from '../../actions';
 import Spinner from '../spinner';
@@ -10,17 +10,30 @@ import {connect} from 'react-redux';
 
 import './libraryBookList.css';
 
-const LibraryBookList = ({books, onBookBook, onRemoveBook}) => {
+const LibraryBookList = ({books, onBookBook, onRemoveBook, isAdmin}) => {
     return (
         <ul className="book-list">
             {
                 books.map((book) => {
+                    let bookItem;
+                    if(isAdmin){
+                        bookItem = <LibraryBookItem
+                                        book={book}
+                                        onBtnClick={() => onRemoveBook(book._id)}
+                                        btnClass='btn-danger'
+                                        btnName='Remove'
+                                />
+                    } else {
+                        bookItem = <LibraryBookItem
+                                        book={book}
+                                        onBtnClick={() => onBookBook(book._id)}
+                                        btnClass='btn-info'
+                                        btnName='Book'
+                />
+                    }
                     return (
-                        <li key={book.id}>
-                            <LibraryBookItem
-                                book={book}
-                                onBookBook={() => onBookBook(book.id)}
-                                onRemoveBook={() => onRemoveBook(book.id)}/>
+                        <li key={book._id}>
+                            {bookItem}
                         </li>
                     )
                 })
@@ -34,7 +47,7 @@ class LibraryBookListContainer extends Component{
     }
 
     render() {
-        const {books, loading, error, onBookBook, onRemoveBook} = this.props;
+        const {books, loading, error, onBookBook, onRemoveBook, libraryService} = this.props;
 
         if( loading) {
             return <Spinner/>;
@@ -48,6 +61,7 @@ class LibraryBookListContainer extends Component{
                     books={books} 
                     onBookBook={onBookBook} 
                     onRemoveBook={onRemoveBook}
+                    isAdmin={libraryService.isAdmin}
                 />;
     }
 };
@@ -60,8 +74,8 @@ const mapDispatchToProps = (dispatch, {libraryService}) => {
     
     return bindActionCreators({
         loadLibraryBooks: loadLibraryBooks(libraryService),
-        onBookBook: bookBook,
-        onRemoveBook: removeBook
+        onBookBook: bookBook(libraryService),
+        onRemoveBook: removeBook(libraryService)
     }, dispatch) 
 
 };

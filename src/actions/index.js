@@ -31,18 +31,22 @@ export const loadLibraryBooks = (libraryService) => () => (dispatch) =>{
         .catch((error) => dispatch(allBooksError(error)));
 }
 
-export const removeBook = (bookId) => {
-    return {
-        type: Actions.REMOVE_BOOK,
-        payload: bookId
-    };
+export const removeBook = (libraryService) => (bookId) => (dispatch) => {
+    libraryService.deleteBook(bookId)
+        .then((data) => dispatch({
+            type: Actions.REMOVE_BOOK,
+            payload: bookId
+        }))
+        .catch((error) => dispatch(allBooksError(error)));
 };
 
-export const bookBook = (bookId) => {
-    return {
-        type: Actions.BOOK_BOOK,
-        payload: bookId
-    };
+export const bookBook = (libraryService) => (bookId) => (dispatch) => {
+    libraryService.bookBook(bookId, '5ed4e6ba700b317c8cddcda7')
+        .then((data) => dispatch({
+            type: Actions.BOOK_BOOK,
+            payload: bookId
+        }))
+        .catch((error) => dispatch(allBooksError(error)));
 };
 
 

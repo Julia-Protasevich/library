@@ -4,7 +4,6 @@ const LibraryPage = () => {
         
     return (
         <div>
-           Library Page
            <LibraryBookList/>
         </div>
     );

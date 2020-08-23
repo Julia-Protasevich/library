@@ -1,7 +1,7 @@
 import React from 'react';
 import './libraryBookItem.css';
 
-const LibraryBookItem = ({book, onBookBook, onRemoveBook}) => {
+const LibraryBookItem = ({book, onBtnClick, btnClass, btnName}) => {
     const {imageURL, name, author, description} = book;
 
     return (
@@ -15,15 +15,11 @@ const LibraryBookItem = ({book, onBookBook, onRemoveBook}) => {
                 <div className="book-description">{description}</div>
 
                 <button
-                    className="btn btn-info"
-                    onClick={onBookBook}>
-                    Book
+                    className={`btn ${btnClass}`}
+                    onClick={onBtnClick}>
+                    {btnName}
                 </button>
-                <button
-                    className="btn btn-danger"
-                    onClick={onRemoveBook}>
-                    Remove
-                </button>
+                
             </div>
         </div>
     )

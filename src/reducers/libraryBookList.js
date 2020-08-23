@@ -6,6 +6,18 @@ import {
     REMOVE_BOOK
 } from '../actions/actionNames.js';
 
+const removeBook = (state, bookId) => {
+    const{bookList: {books}} = state;
+    const index = books.findIndex((book) => book._id === bookId);
+    return {
+        error: false,
+        loading: false,
+        books: [
+            ...books.slice(0, index),
+            ...books.slice(index+1)
+        ]
+    };
+};
 
 const updateLibraryBookList = (state, action) => {
     if(state === undefined) {
@@ -34,18 +46,9 @@ const updateLibraryBookList = (state, action) => {
                 loading: false,
                 error: action.payload
             };
-        case BOOK_BOOK: //TODO: will be replaced with real code
-            return { 
-                books: [],
-                loading: false,
-                error: null
-            };
-        case REMOVE_BOOK: //TODO: will be replaced with real code
-            return {
-                books: [],
-                loading: false,
-                error: null
-            }
+        case BOOK_BOOK: //both actions mean that the book should disappear from this list
+        case REMOVE_BOOK: 
+            return removeBook(state, action.payload);
         default: 
             return state.bookList;
     }
