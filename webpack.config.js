@@ -8,34 +8,18 @@ module.exports = (env = {}) => {
   const PROD = 'production';
   const NONE = 'none';
 
-  let {mode = DEV} = env;
+  const {mode = NONE} = env;
+  const isProd = mode === PROD;
+  const isDev = mode === DEV;
 
-  let isProd = false;
-  let isDev = false;
-
-  const defineMode = () => {
-    switch (mode){
-      case PROD:
-        isProd = true;
-        break;
-      case DEV:
-        isDev = true;
-        break;
-      default:
-        mode = NONE;
-    }
-
-    return mode;
-  };
-
-  const getStyleLoaders = () => {
+  const getStyleLoaders = (isProd) => {
     return [
       isProd ? MiniCssExtractPlugin.loader : 'style-loader',
       'css-loader'
     ];
   };
 
-  const getPlugins = () => {
+  const getPlugins = (isProd, isDev) => {
     const plugins = [
       new HtmlWebPackPlugin({
         template: './src/index.html',
@@ -60,7 +44,7 @@ module.exports = (env = {}) => {
   };
 
   return {
-    mode: defineMode(),
+    mode,
     module: {
       rules: [{
           test: /\.(js|jsx)$/,
@@ -68,17 +52,17 @@ module.exports = (env = {}) => {
           loader: "babel-loader"
         }, {
           test: /\.css$/,
-          use: getStyleLoaders()
+          use: getStyleLoaders(isProd)
         }, {
           test : /\.(s[c|a]ss)$/,
-          use: [...getStyleLoaders(), 'sass-loader']
+          use: [...getStyleLoaders(isProd), 'sass-loader']
         }, {
           test: /\.html$/,
           loader: 'html-loader'
         },
       ]
     },
-    plugins: getPlugins(),
+    plugins: getPlugins(isProd, isDev),
     devServer: {
       open: true,
       historyApiFallback: true
@@ -86,7 +70,6 @@ module.exports = (env = {}) => {
     output: {
       publicPath: '/'
     }
-  
   };
 
 };
