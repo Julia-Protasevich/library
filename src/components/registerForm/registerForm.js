@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import {withLibraryService} from '../highOrderComponents';
+import Routes from '../../routes';
 
 
 import './registerForm.css';
@@ -43,7 +44,7 @@ function RegisterForm() {
                     Register
             </button>
 
-            <Link to="/login">Already have an account?</Link>
+            <Link to={Routes.LOGIN}>Already have an account?</Link>
         </form>
     );
 };

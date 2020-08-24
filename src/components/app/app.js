@@ -9,6 +9,8 @@ import {
     RegisterPage
 } from '../pages';
 
+import Routes from '../../routes';
+
 import './app.css';
 
 const App = () => {
@@ -16,10 +18,10 @@ const App = () => {
       <main role="main" className="container">
         <Header />
         <Switch>
-          <Route path="/" component={LibraryPage} exact/>
-          <Route path="/mybooks" component={UserBooksPage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
+          <Route path={Routes.HOME} component={LibraryPage} exact/>
+          <Route path={Routes.MY_BOOKS} component={UserBooksPage} />
+          <Route path={Routes.LOGIN} component={LoginPage} />
+          <Route path={Routes.REGISTER} component={RegisterPage} />
 
         </Switch>
       </main>

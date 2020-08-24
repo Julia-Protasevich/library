@@ -1,7 +1,7 @@
 import {
-    REQUESTED_GENERAL_BOOKS_LIST, 
-    LOADED_GENERAL_BOOKS_LIST, 
-    ERROR_GENERAL_BOOKS_LIST,
+    LOAD_GENERAL_BOOKS_LIST, 
+    SAVE_GENERAL_BOOK_LIST, 
+    GENERAL_BOOKS_FAILURE,
     BOOK_BOOK,
     REMOVE_BOOK
 } from '../actions/actionNames.js';
@@ -28,19 +28,19 @@ const updateLibraryBookList = (state, action) => {
         }
     }
     switch (action.type) {
-        case REQUESTED_GENERAL_BOOKS_LIST:
+        case LOAD_GENERAL_BOOKS_LIST:
             return {
                 books: [],
                 loading: true,
                 error: null
             };
-        case LOADED_GENERAL_BOOKS_LIST :
+        case SAVE_GENERAL_BOOK_LIST :
             return {
                 books: action.payload,
                 loading: false,
                 error: null
             };
-        case ERROR_GENERAL_BOOKS_LIST: 
+        case GENERAL_BOOKS_FAILURE: 
             return {
                 books: [],
                 loading: false,

@@ -1,3 +1,3 @@
-import LibraryBookList from './libraryBookList';
+import LibraryBookList from './libraryBookListContainer';
 
 export default LibraryBookList;

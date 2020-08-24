@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import {withLibraryService} from '../highOrderComponents';
+import Routes from '../../routes';
 
 
 import './loginForm.css';
@@ -34,7 +35,7 @@ function LoginForm() {
                     Sign in
             </button>
 
-            <Link to="/register">Don't have an account?</Link>
+            <Link to={Routes.REGISTER}>Don't have an account?</Link>
         </form>
     );
 };
