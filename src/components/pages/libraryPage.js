@@ -3,9 +3,7 @@ import LibraryBookList from '../libraryBookList';
 const LibraryPage = () => {
         
     return (
-        <div>
-           <LibraryBookList/>
-        </div>
+       <LibraryBookList/>
     );
 
 };
