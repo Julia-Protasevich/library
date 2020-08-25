@@ -1,4 +1,33 @@
-export const HOME = '/';
-export const MY_BOOKS = '/mybooks';
-export const LOGIN = '/login';
-export const REGISTER = '/register';
+import {
+    LibraryPage,
+    LoginPage,
+    UserBooksPage, 
+    RegisterPage
+} from '../components/pages';
+
+import {
+    HOME, 
+    MY_BOOKS, 
+    LOGIN, 
+    REGISTER
+} from './paths';
+
+const routes = [
+    {
+        path: HOME,
+        component: LibraryPage,
+    },
+    {
+        path: MY_BOOKS,
+        component: UserBooksPage,
+    },
+    {
+        path: LOGIN,
+        component: LoginPage,
+    }, {
+        path: REGISTER,
+        component: RegisterPage
+    }
+];
+
+export default routes;
