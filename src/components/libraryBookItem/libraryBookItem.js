@@ -16,7 +16,8 @@ const LibraryBookItem = ({book, onBtnClick, btnClass, btnName}) => {
 
                 <button
                     className={`btn ${btnClass}`}
-                    onClick={onBtnClick}>
+                    onClick={onBtnClick}
+                    data-id={book._id}>
                     {btnName}
                 </button>
                 

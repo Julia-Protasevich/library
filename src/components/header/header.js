@@ -15,7 +15,7 @@ const Header = () => {
                 </Link>
                 <Link to={MY_BOOKS}>
                     <div className="my-books-link">
-                        <i class="stack-icon fa fa-bars"/>
+                        <i className="stack-icon fa fa-bars"/>
                         My books
                     </div>
                 </Link>

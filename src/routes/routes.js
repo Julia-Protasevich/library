@@ -16,17 +16,21 @@ const routes = [
     {
         path: HOME,
         component: LibraryPage,
+        exact: true
     },
     {
         path: MY_BOOKS,
         component: UserBooksPage,
+        exact: false
     },
     {
         path: LOGIN,
         component: LoginPage,
+        exact: false
     }, {
         path: REGISTER,
-        component: RegisterPage
+        component: RegisterPage,
+        exact: false
     }
 ];
 

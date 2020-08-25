@@ -14,7 +14,14 @@ const App = () => {
         <Switch>
           {
             Routes.map(route => {
-              return (<Route path={route.path} component={route.component} exact/>)
+              return (
+                <Route 
+                  key={route.path} 
+                  path={route.path} 
+                  component={route.component} 
+                  exact={route.exact}
+                />
+              )
             })
           }
           
