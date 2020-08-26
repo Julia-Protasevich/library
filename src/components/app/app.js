@@ -24,7 +24,6 @@ const App = () => {
               )
             })
           }
-          
         </Switch>
       </main>
     )

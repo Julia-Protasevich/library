@@ -4,7 +4,6 @@ import {useForm} from 'react-hook-form';
 import {withLibraryService} from '../highOrderComponents';
 import {REGISTER} from '../../routes/paths';
 
-
 import './loginForm.css';
 
 function LoginForm() {
@@ -18,7 +17,7 @@ function LoginForm() {
     return (
         <form className="text-center border border-light p-5" 
                 onSubmit={handleSubmit(onSubmit)}>
-            
+
             <p className="h4 mb-4">Sign in</p>
             <input className="form-control mb-4" 
                 placeholder="E-mail"

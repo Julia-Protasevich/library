@@ -13,14 +13,12 @@ const LibraryBookItem = ({book, onBtnClick, btnClass, btnName}) => {
                 <span className="book-title">{name}</span>
                 <div className="book-author">{author}</div>
                 <div className="book-description">{description}</div>
-
                 <button
                     className={`btn ${btnClass}`}
                     onClick={onBtnClick}
                     data-id={book._id}>
                     {btnName}
                 </button>
-                
             </div>
         </div>
     )

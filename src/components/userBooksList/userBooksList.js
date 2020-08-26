@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {withLibraryService} from '../highOrderComponents';
-
 import Spinner from '../spinner';
 import ErrorIndicator from '../errorBoundry/errorIndicator';
 import LibraryBookItem from '../libraryBookItem';
@@ -12,8 +11,6 @@ class UserBooksList extends Component {
         error: false,
         books: []
     };
-
-    
 
     updateBooks = () => {
         this.props.libraryService.getUsersBooks('5ed4e6ba700b317c8cddcda7')

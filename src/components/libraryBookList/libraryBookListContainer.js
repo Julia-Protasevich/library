@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import LibraryBookList from './libraryBookList';
 import {withLibraryService} from '../highOrderComponents';
 import {bookBook, removeBook, loadLibraryBooks} from '../../actions';
@@ -7,7 +6,6 @@ import Spinner from '../spinner';
 import ErrorIndicator from '../errorBoundry/errorIndicator';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
 
 class LibraryBookListContainer extends Component{
     componentDidMount() {
@@ -35,17 +33,15 @@ class LibraryBookListContainer extends Component{
 };
 
 const mapStateToProps = ({bookList: {books, loading, error}}) => {
-    return { books, loading, error} 
+    return { books, loading, error};
 }
 
 const mapDispatchToProps = (dispatch, {libraryService}) => {
-    
     return bindActionCreators({
         loadLibraryBooks: loadLibraryBooks(libraryService),
         onBookBook: bookBook(libraryService),
         onRemoveBook: removeBook(libraryService)
-    }, dispatch) 
-
+    }, dispatch);
 };
 
 export default withLibraryService()(

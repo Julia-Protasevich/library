@@ -4,7 +4,6 @@ import {useForm} from 'react-hook-form';
 import {withLibraryService} from '../highOrderComponents';
 import {LOGIN} from '../../routes/paths';
 
-
 import './registerForm.css';
 
 function RegisterForm() {
