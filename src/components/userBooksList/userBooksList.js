@@ -12,8 +12,13 @@ class UserBooksList extends Component {
         books: []
     };
 
+    clickHandler = (e) => {
+        const id = e.target.dataset.id;
+        this.releaseBook(id);
+    };
+
     updateBooks = () => {
-        this.props.libraryService.getUsersBooks('5ed4e6ba700b317c8cddcda7')
+        return this.props.libraryService.getUsersBooks('5ed4e6ba700b317c8cddcda7')
         .then((data) => {
             this.setState({
                 loading: false,
@@ -28,15 +33,15 @@ class UserBooksList extends Component {
                 books: []
             });
         });
-    }
+    };
 
     componentDidMount() {
         this.updateBooks();
     };
 
-    onReleaseBook = (id) => {
-        this.props.libraryService.releaseBook(id)
-            .then(this.updateBooks())
+    releaseBook = (id) => {
+        return this.props.libraryService.releaseBook(id)
+            .then(this.updateBooks)
             .catch((error) => {
                 this.setState({
                     loading: false,
@@ -57,14 +62,17 @@ class UserBooksList extends Component {
         }
 
         return (
-            <ul className="book-list">
+            <ul 
+                className="book-list"
+                onClick={this.clickHandler}
+            >
                 {
                     books.map((book) => {
                         return (
                             <li key={book._id}>
                                 <LibraryBookItem
                                     book={book}
-                                    onBtnClick={() => this.onReleaseBook(book._id)}
+                                    onBtnClick={() => this.releaseBook(book._id)}
                                     btnClass='btn-info'
                                     btnName='Release book'
                                 />

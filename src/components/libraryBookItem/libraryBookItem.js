@@ -1,7 +1,7 @@
 import React from 'react';
 import './libraryBookItem.css';
 
-const LibraryBookItem = ({book, onBtnClick, btnClass, btnName}) => {
+const LibraryBookItem = ({book, btnClass, btnName}) => {
     const {imageURL, name, author, description} = book;
 
     return (
@@ -15,7 +15,6 @@ const LibraryBookItem = ({book, onBtnClick, btnClass, btnName}) => {
                 <div className="book-description">{description}</div>
                 <button
                     className={`btn ${btnClass}`}
-                    onClick={onBtnClick}
                     data-id={book._id}>
                     {btnName}
                 </button>
