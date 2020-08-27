@@ -5,6 +5,7 @@ import {
     BOOK_BOOK,
     REMOVE_BOOK
 } from '../actions/actionNames.js';
+import defaultStateValue from './defaultStateValue';
 
 const removeBook = (state, bookId) => {
     const{bookList: {books}} = state;
@@ -19,14 +20,7 @@ const removeBook = (state, bookId) => {
     };
 };
 
-const updateLibraryBookList = (state, action) => {
-    if(state === undefined) {
-        return {
-            books: [],
-            loading: true,
-            error: null
-        }
-    }
+const updateLibraryBookList = (state = defaultStateValue, action) => {
     switch (action.type) {
         case LOAD_GENERAL_BOOKS_LIST:
             return {
