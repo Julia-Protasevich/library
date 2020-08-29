@@ -6,12 +6,26 @@ import {REGISTER} from '../../routes/paths';
 
 import './loginForm.css';
 
-function LoginForm() {
+function LoginForm({libraryService}) {
 
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, setError, errors } = useForm();
 
-    const onSubmit = (data) => {
-        
+    const onSubmit = async (data) => {
+        try{
+            const res = await libraryService.login(data);
+            console.log(res);
+
+            //TODO redirect user to main, add token 
+            //to localStore and bla-bla-bla
+        } catch (error) {
+            if(error.response.status === 401) {
+                setError("password", {
+                    type: "manual",
+                    message: error.response.data
+                });
+            }
+            else throw error;
+        }
     };
   
     return (
@@ -28,6 +42,8 @@ function LoginForm() {
                 placeholder="Password"
                 name="password" type="password" 
                 ref={register({required: true})} />
+            {errors.password && <p>{errors.password.message}</p>}
+
 
             <button className="btn btn-info btn-block my-4"
                 type="submit">

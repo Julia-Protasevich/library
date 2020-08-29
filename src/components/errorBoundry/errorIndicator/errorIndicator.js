@@ -1,9 +1,9 @@
 import React from 'react';
 import './errorIndicator.css';
 
-const ErrorIndicator = () => {
+const ErrorIndicator = ({error}) => {
     return (
-        <div>Error!</div>
+    <div>Error! {error}</div>
     )
 }
 

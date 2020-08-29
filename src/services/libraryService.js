@@ -42,5 +42,12 @@ export default class LibraryService {
     return this.instance.put(`books/${bookId}`);
   };
 
+  register = (data) => {
+    return this.instance.post(`user/register`, data);
+  }
+
+  login = (data) => {
+    return this.instance.post(`user/login`, data);
+  }
   isAdmin = false;//hardcode before role check is implemented
 }

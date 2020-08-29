@@ -44,7 +44,7 @@ const updateLibraryBookList = (state = defaultStateValue, action) => {
         case REMOVE_BOOK: 
             return removeBook(state, action.payload);
         default: 
-            return state.bookList;
+            return state;
     }
 };
 

@@ -6,12 +6,25 @@ import {LOGIN} from '../../routes/paths';
 
 import './registerForm.css';
 
-function RegisterForm() {
+function RegisterForm({libraryService}) {
 
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, setError, errors } = useForm();
 
-    const onSubmit = (data) => {
-        
+    const onSubmit = async (data) => {
+        try{
+            const res = await libraryService.register(data);
+            console.log(res);
+
+            //TODO redirect user to sign in page
+        } catch (error) {
+            if(error.response.status === 409) {
+                setError("email", {
+                    type: "manual",
+                    message: error.response.data
+                });
+            }
+            else throw error;
+        }
     };
   
     return (
@@ -29,6 +42,8 @@ function RegisterForm() {
                 placeholder="E-mail"
                 name="email" 
                 ref={register({required: true})} />
+            {errors.email && <p>{errors.email.message}</p>}
+
 
             <input className="form-control mb-4" 
                 placeholder="Password"
