@@ -62,8 +62,14 @@ module.exports = (env = {}) => {
         },
       ]
     },
-    plugins: getPlugins(isProd, isDev)
-  
+    plugins: getPlugins(isProd, isDev),
+    devServer: {
+      open: true,
+      historyApiFallback: true
+    }, 
+    output: {
+      publicPath: '/'
+    }
   };
 
 };
